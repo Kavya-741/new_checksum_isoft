@@ -126,12 +126,6 @@ public class User {
 	@Column(name="checker_timestamp")
 	private Date checkerTimestamp;
 	
-	@Column(name="businessdate_timestamp")
-	private Date businessdateTimestamp;
-	
-	@Column(name="sysdate_timestamp")
-	private Date sysdateTimestamp;
-	
 	@Column(name="grade")
 	private String grade;
 	

@@ -12,18 +12,26 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Table(name = "user_role_mapping")
+@IdClass(UserRoleMappingId.class)
 public class UserRoleMapping {
 
 	@Id
-	@Column(name = "legal_entity_code")
-	private Integer legalEntityCode;
+    @Column(name = "legal_entity_code", nullable = false)
+    private Integer legalEntityCode;
 
-	@Column(name = "user_id")
-	private String userId;
+    @Id
+    @Column(name = "user_role_id", nullable = false)
+    private String userRoleId;
 
+    @Column(name = "user_id", nullable = false)
+    private String userId;
 
-	@Column(name = "user_role_id")
-	private String userRoleId;
+	@ManyToOne
+    @JoinColumns({
+        @JoinColumn(name = "user_role_id", referencedColumnName = "ug_role_code", insertable = false, updatable = false),
+        @JoinColumn(name = "legal_entity_code", referencedColumnName = "legal_entity_code", insertable = false, updatable = false)
+    })
+    private MaintUsergroupRoles maintUsergroupRoles;
 
 	@Column(name = "auth_rej_remarks")
 	private String authRejRemarks;
@@ -45,11 +53,5 @@ public class UserRoleMapping {
 
 	@Column(name = "checker_timestamp")
 	private String checkerTimestamp;
-
-	@Column(name = "businessdate_timestamp")
-	private Date businessdateTimestamp;
-
-	@Column(name = "sysdate_timestamp")
-	private Date sysdateTimestamp;
 
 }

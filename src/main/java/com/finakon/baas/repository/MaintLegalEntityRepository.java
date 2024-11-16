@@ -10,4 +10,6 @@ public interface MaintLegalEntityRepository extends JpaRepository<MaintLegalEnti
     @Query(value = "SELECT * FROM maint_legal_entity WHERE url = ?1 and status = 'A'", nativeQuery = true)
     MaintLegalEntity findLegalEnityCodeByDomain(String domain);
 
+    MaintLegalEntity findByLegalEntityCode(Integer legalEntityCode);
+
 }

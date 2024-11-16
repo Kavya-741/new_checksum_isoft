@@ -25,7 +25,7 @@ public interface UserSessionRepository extends JpaRepository<UserSession, UserSe
 	@Modifying
 	@Transactional
 	@Query(value = "UPDATE users_session_details SET token = ?1 WHERE user_id = ?2 and legal_entity_code = ?3", nativeQuery = true)
-	void updateToken(String token, String userId, String legalEntityCode);
+	void updateToken(String token, String userId, Integer legalEntityCode);
 
 	UserSession findByUserIdAndLegalEntityCode(String userId,Integer legalEntityCode);
 }

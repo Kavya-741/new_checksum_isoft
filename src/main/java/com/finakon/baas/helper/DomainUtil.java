@@ -14,7 +14,7 @@ public class DomainUtil {
         DomainUtil.maintLegalEntityRepository = maintLegalEntityRepository;
     }
 
-    public static final MaintLegalEntity getLegalEntityCodeByDomain(String domain, Boolean isDev) {
+    public static final MaintLegalEntity getLegalEntityCodeByDomain(String domain) {
         MaintLegalEntity maintLegalEntity = maintLegalEntityRepository.findLegalEnityCodeByDomain(domain);
     
         if(maintLegalEntity != null) {

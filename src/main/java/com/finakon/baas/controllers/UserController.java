@@ -1,13 +1,19 @@
 package com.finakon.baas.controllers;
 
+import com.finakon.baas.dto.ApiResponse;
+import com.finakon.baas.dto.GetTokenDetailsDTO;
 import com.finakon.baas.dto.LoginRequest;
 import com.finakon.baas.dto.LogoutRequest;
 import com.finakon.baas.dto.UpdateTokenDetailsRequest;
 import com.finakon.baas.entities.MaintLegalEntity;
+import com.finakon.baas.entities.User;
+import com.finakon.baas.helper.BankAuditConstant;
 import com.finakon.baas.helper.Constants;
 import com.finakon.baas.helper.DomainUtil;
+import com.finakon.baas.jwthelper.JwtTokenUtil;
 import com.finakon.baas.service.UserService;
 
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +22,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/users")
@@ -28,9 +39,6 @@ public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	@Value("${isdev}")
-	private boolean isDev;
-
 	@CrossOrigin
 	@GetMapping("/healthCheck")
 	public ResponseEntity<String> healthCheck() {
@@ -39,79 +47,31 @@ public class UserController {
 
 	@CrossOrigin
 	@PostMapping("/login")
-	public ResponseEntity<Object> login(HttpServletRequest request,
+	public ResponseEntity<ApiResponse> login(HttpServletRequest request,
 			@RequestBody LoginRequest loginRequest) {
-		Map<String, Object> response = new HashMap<>();
 		String domain = request.getHeader("Host");
-
-		// if domain is null and it is not dev env return invalid domain
-		if (domain == null && !isDev) {
-			response.put(Constants.SUCCESS, false);
-			response.put(Constants.MESSAGE, "Invalid Domain");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-		}
-
-		// find the legal entity code for the given domain
-		MaintLegalEntity maintLegalEntity = DomainUtil.getLegalEntityCodeByDomain(domain, isDev);
-
-		if (maintLegalEntity == null) {
-			response.put(Constants.SUCCESS, false);
-			response.put(Constants.MESSAGE, "Invalid Domain");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-		}
-
-		return userService.login(maintLegalEntity, loginRequest);
+		return userService.login(domain, loginRequest);
 	}
 
 	@CrossOrigin
 	@PostMapping("/updateTokenDetails")
-	public ResponseEntity<Object> updateTokenDetails(HttpServletRequest request,
+	public ResponseEntity<ApiResponse> updateTokenDetails(HttpServletRequest request,
 			@RequestBody UpdateTokenDetailsRequest updateTokenDetailsRequest) {
-		Map<String, Object> response = new HashMap<>();
-		String domain = request.getHeader("Host");
-
-		// if domain is null and it is not dev env return invalid domain
-		if (domain == null && !isDev) {
-			response.put(Constants.SUCCESS, false);
-			response.put(Constants.MESSAGE, "Invalid Domain");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-		}
-
-		// find the legal entity code for the given domain
-		MaintLegalEntity maintLegalEntity = DomainUtil.getLegalEntityCodeByDomain(domain, isDev);
-
-		if (maintLegalEntity == null) {
-			response.put(Constants.SUCCESS, false);
-			response.put(Constants.MESSAGE, "Invalid Domain");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-		}
-
-		return userService.updateTokenDetails(maintLegalEntity, updateTokenDetailsRequest);
+				String authorizationHeader = request.getHeader("Authorization");
+		return userService.updateTokenDetails(authorizationHeader, updateTokenDetailsRequest);
 	}
 
 	@CrossOrigin
 	@PostMapping("/logout")
-	public ResponseEntity<Object> logout(HttpServletRequest request,
-			@RequestBody LogoutRequest loginRequest) {
-		Map<String, Object> response = new HashMap<>();
-		String domain = request.getHeader("Host");
+	public ResponseEntity<ApiResponse> logout(HttpServletRequest request) {
+		String authorizationHeader = request.getHeader("Authorization");
+		return userService.logout(authorizationHeader);
+	}
 
-		// if domain is null and it is not dev env return invalid domain
-		if (domain == null && !isDev) {
-			response.put(Constants.SUCCESS, false);
-			response.put(Constants.MESSAGE, "Invalid Domain");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-		}
-
-		// find the legal entity code for the given domain
-		MaintLegalEntity maintLegalEntity = DomainUtil.getLegalEntityCodeByDomain(domain, isDev);
-
-		if (maintLegalEntity == null) {
-			response.put(Constants.SUCCESS, false);
-			response.put(Constants.MESSAGE, "Invalid Domain");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-		}
-
-		return userService.logout(maintLegalEntity, loginRequest);
+	@PostMapping(value = "/getUserRolesAndDetails", produces = { "application/json" }, consumes = {
+			"application/json" })
+	public ResponseEntity<ApiResponse> getUserRolesAndDetails(HttpServletRequest request) {
+		String authorizationHeader = request.getHeader("Authorization");
+		return userService.getUserRolesAndDetails(authorizationHeader);
 	}
 }

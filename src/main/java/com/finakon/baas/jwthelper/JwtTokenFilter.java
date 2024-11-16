@@ -68,7 +68,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 return;
             }
             String token = authorizationHeader.substring(7);
-            MaintLegalEntity maintLegalEntity = DomainUtil.getLegalEntityCodeByDomain(request.getHeader("Host"), isDev);
+            MaintLegalEntity maintLegalEntity = DomainUtil.getLegalEntityCodeByDomain(request.getHeader("Host"));
 
             if (!JwtTokenUtil.validateJwt(token, maintLegalEntity)) {
                 String message = "Your session has expired please re-login again";

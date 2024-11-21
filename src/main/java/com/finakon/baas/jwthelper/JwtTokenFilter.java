@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finakon.baas.entities.MaintLegalEntity;
 import com.finakon.baas.entities.UserSession;
 import com.finakon.baas.helper.DomainUtil;
-import com.finakon.baas.projections.IPermission;
-import com.finakon.baas.repository.UserRepository;
-import com.finakon.baas.repository.UserSessionRepository;
+import com.finakon.baas.repository.JPARepositories.UserRepository;
+import com.finakon.baas.repository.JPARepositories.UserSessionRepository;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +18,6 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +36,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Value("${isdev}")
     private boolean isDev;
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
-    private final List<String> excludedEndpoints = Arrays.asList("/api/users/healthCheck", "/api/users/login",
+    private final List<String> excludedEndpoints = Arrays.asList("/user/healthCheck", "/user/login",
             "/swagger-ui/**", "/v3/api-docs/**", "/webjars/**",
             "/api/users/forgot-password", "/api/users/validate-otp", "/api/roles");
 

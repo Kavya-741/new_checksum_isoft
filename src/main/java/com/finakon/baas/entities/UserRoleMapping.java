@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
 
+import com.finakon.baas.entities.IdClasses.UserRoleMappingId;
+
 @Entity
 @Getter
 @Setter
@@ -23,6 +25,7 @@ public class UserRoleMapping {
     @Column(name = "user_role_id", nullable = false)
     private String userRoleId;
 
+	@Id
     @Column(name = "user_id", nullable = false)
     private String userId;
 

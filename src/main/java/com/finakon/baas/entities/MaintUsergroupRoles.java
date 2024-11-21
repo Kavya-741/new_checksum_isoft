@@ -10,6 +10,8 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
+import com.finakon.baas.entities.IdClasses.MaintUserGroupRolesId;
+
 @Entity
 @Getter
 @Setter

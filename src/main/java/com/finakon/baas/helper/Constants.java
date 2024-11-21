@@ -14,6 +14,7 @@ public class Constants {
     public class UserControllerErrorCode {
         public static final String INVALID_DOMAIN = "Invalid domain";
         public static final String INVALID_CAPTCHA = "Invalid Captcha";
+        public static final String INVALID_PARAMETER = "Invalid Captcha";
         public static final String ACCOUNT_LOCKED = "Your account is locked please reset password";
         public static final String EXISTING_SESSION = "Are you wanting to logout the user who is already logged into another system ?";
         public static final String LOGIN_SUCCESS = "Logged in successfully";
@@ -22,6 +23,8 @@ public class Constants {
         public static final String LOGOUT_EXCEPTION = "Logout Eception";
         public static final String INVALID_ROLE = "Invalid User Role";
         public static final String TOKEN_DETAILS_SUCCESS = "Successfully updated token details";
+        public static final String SUCCESSFUL_RETRIEVED = "successfuly retrieved ";
+        public static final String NOT_FOUND = "not found any";
 
         public static Map<String, String> userStatusDesc;
         static {

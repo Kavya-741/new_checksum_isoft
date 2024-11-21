@@ -8,6 +8,7 @@ import lombok.Setter;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -134,4 +135,8 @@ public class User {
 	
 	@Column(name="department")
 	private String department;
+
+	private transient String userRoles;
+
+	private transient List<MaintEntityAuditSubgroupMapping> maintEntityAuditSubgroupMappings;
 }

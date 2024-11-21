@@ -8,6 +8,8 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.finakon.baas.entities.IdClasses.UserSessionId;
+
 import jakarta.persistence.*;
 
 @Entity

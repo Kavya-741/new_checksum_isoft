@@ -1,21 +1,14 @@
 package com.finakon.baas.jwthelper;
-import com.finakon.baas.dto.GetTokenDetailsDTO;
+import com.finakon.baas.dto.Request.GetTokenDetailsDTO;
 import com.finakon.baas.entities.MaintEntity;
 import com.finakon.baas.entities.MaintLegalEntity;
 import com.finakon.baas.entities.User;
 import com.finakon.baas.helper.DateUtil;
-import com.finakon.baas.projections.ILabelsInfo;
-import com.finakon.baas.repository.UserRepository;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class JwtTokenUtil {
 

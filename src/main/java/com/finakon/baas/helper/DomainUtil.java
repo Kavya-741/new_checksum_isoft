@@ -1,7 +1,7 @@
 package com.finakon.baas.helper;
 
 import com.finakon.baas.entities.MaintLegalEntity;
-import com.finakon.baas.repository.MaintLegalEntityRepository;
+import com.finakon.baas.repository.JPARepositories.MaintLegalEntityRepository;
 
 import org.springframework.stereotype.Component;
 

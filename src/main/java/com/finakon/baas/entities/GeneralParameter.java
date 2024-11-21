@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
 
+import com.finakon.baas.entities.IdClasses.GeneralParameterIdClass;
+
 @Entity
 @Getter
 @Setter

@@ -36,8 +36,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Value("${isdev}")
     private boolean isDev;
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
-    private final List<String> excludedEndpoints = Arrays.asList("/api/user/healthCheck", "/api/user/login",
-            "/api/swagger-ui/**", "/api/v3/api-docs/**", "/api/webjars/**",
+    private final List<String> excludedEndpoints = Arrays.asList("/api/user/healthCheck", "/api/user/login","/swagger-ui.html",
+            "/swagger-ui/**", "/v3/api-docs/**","/v2/api-docs/**", "/swagger-resources/**", "/webjars/**",
             "/api/users/forgot-password", "/api/users/validate-otp", "/api/roles");
 
     @Override

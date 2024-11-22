@@ -25,7 +25,7 @@ import com.finakon.baas.service.ServiceInterfaces.GeneralParameterService;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/generalParameter")
+@RequestMapping("/api/generalParameter")
 public class GeneralParameterController {
 
 	/**

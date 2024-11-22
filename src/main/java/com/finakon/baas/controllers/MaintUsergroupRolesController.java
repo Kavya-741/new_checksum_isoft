@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/maintUsergroupRoles")
+@RequestMapping("/api/maintUsergroupRoles")
 public class MaintUsergroupRolesController {
 
 	/**

@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/maintEntity")
+@RequestMapping("/api/maintEntity")
 public class MaintEntityController {
 
 	@Autowired

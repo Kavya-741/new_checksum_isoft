@@ -208,7 +208,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 				+ "        maker AS maker, " 
 				+ "        maker_timestamp AS makerTimestamp, " 
 				+ "        checker AS checker, " 
-				+ "        checker_timestamp AS checkerTimestamp " 
+				+ "        checker_timestamp AS checkerTimestamp, " 
 				+ "        auth_rej_remarks as authRejRemarks " 
 				//+ "		   ,(SELECT GROUP_CONCAT(concat(m.user_role_id,'-',r.ug_role_name)) FROM user_role_mapping_wrk m,maint_usergroup_roles r "
 				+ "		   ,(SELECT GROUP_CONCAT(r.ug_role_name) FROM user_role_mapping_wrk m,maint_usergroup_roles r "

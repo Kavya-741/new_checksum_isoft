@@ -1,4 +1,4 @@
-package com.bankaudit.rest;
+package com.bankaudit.rest.controller;
 
 import java.sql.Timestamp;
 import java.util.List;

@@ -1,11 +1,15 @@
-package com.bankaudit.rest;
+package com.bankaudit.rest.controller;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.bankaudit.dto.DataTableResponse;
+import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.model.MaintAuditTypeDesc;
 import com.bankaudit.service.MaintAuditTypeDescService;
 
 @RestController
@@ -14,6 +18,8 @@ public class MaintAuditTypeDescController {
 
     @Autowired
 	private MaintAuditTypeDescService maintAuditTypeDescService;
+
+	
 
     @CrossOrigin
 	@GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE) 
@@ -57,5 +63,38 @@ public class MaintAuditTypeDescController {
 		return dataTableResponse;
 	}
 
+
+	@GetMapping(value="/getByLegalEntityCode/{legalEntityCode}",produces=MediaType.APPLICATION_JSON_VALUE)
+	ServiceStatus getMaintAuditTypeDescByLegalEntityCode(@PathVariable("legalEntityCode")Integer legalEntityCode
+			){
+		ServiceStatus serviceStatus=new ServiceStatus();
+		
+		if(legalEntityCode!=null 
+				){
+			
+			try {
+			    List<MaintAuditTypeDesc> maintAuditTypeDescs=maintAuditTypeDescService.getMaintAuditTypeDescByLegalEntityCode(legalEntityCode);
+			    if(maintAuditTypeDescs!=null&& !maintAuditTypeDescs.isEmpty()){
+			    	serviceStatus.setResult(maintAuditTypeDescs);
+				    serviceStatus.setStatus("success");
+				    serviceStatus.setMessage("successfully retrieved ");	
+			    }else {
+					serviceStatus.setStatus("failure");
+					serviceStatus.setMessage("MaintAuditTypeDescs not found");
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				serviceStatus.setStatus("failure");
+				serviceStatus.setMessage("failure");
+			}
+			
+		}else {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("invalid payload ");
+		}
+		
+		return serviceStatus;
+	}
     
 }

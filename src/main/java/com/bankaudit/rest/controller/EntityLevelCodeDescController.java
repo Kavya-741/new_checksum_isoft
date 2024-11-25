@@ -1,7 +1,7 @@
 /*
  * 
  */
-package com.bankaudit.rest;
+package com.bankaudit.rest.controller;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ import com.bankaudit.service.EntityLevelCodeDescService;
  */
 
 @RestController
-@RequestMapping("/entityLevelCodeDesc")
+@RequestMapping("/api/entityLevelCodeDesc")
 public class EntityLevelCodeDescController {
 
 	@Autowired

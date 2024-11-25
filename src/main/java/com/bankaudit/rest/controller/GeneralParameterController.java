@@ -1,7 +1,7 @@
 /*
  * 
  */
-package com.bankaudit.rest;
+package com.bankaudit.rest.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

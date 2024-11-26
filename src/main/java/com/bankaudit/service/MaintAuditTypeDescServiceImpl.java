@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dao.MaintAuditTypeDescDao;
 import com.bankaudit.dto.DataTableResponse;
-import com.bankaudit.helper.BankAuditConstant;
 import com.bankaudit.model.MaintAuditTypeDesc;
 
 @Service

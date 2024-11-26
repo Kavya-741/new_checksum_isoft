@@ -20,7 +20,7 @@ import com.bankaudit.service.MaintCriticalityService;
 
 
 @RestController
-@RequestMapping("/maintCriticality")
+@RequestMapping("/api/maintCriticality")
 public class MaintCriticalityController {
 
 

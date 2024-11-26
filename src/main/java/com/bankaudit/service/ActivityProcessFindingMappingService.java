@@ -12,7 +12,14 @@ public interface ActivityProcessFindingMappingService {
 			String orderDirection, Integer page, Integer size);
 
 	Boolean isActivityProcessFindingMapping(int parseInt, String auditTypeCode, String auditGroupCode,
-	String auditSubGroupCode, String activityCode, String processCode, String findingCode,String createOrUpdate,String riskBelongsTo);
-		
+			String auditSubGroupCode, String activityCode, String processCode, String findingCode,
+			String createOrUpdate, String riskBelongsTo);
+
+	void updateActivityProcessFindingMapping(ActivityProcessFindingMapping activityProcessFindingMapping);
+
+	public ActivityProcessFindingMapping getActivityProcessFindingMapping(Integer legalEntityCode, String mappingId,
+			String status);
+
+	void deleteActivityProcessFindingMapping(Integer legalEntityCode, String mappingId, String statusUnauth);
 
 }

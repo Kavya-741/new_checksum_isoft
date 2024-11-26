@@ -11,12 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.LoginRequest;
 import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.dto.UpdateTokenDetailsRequest;
 import com.bankaudit.dto.UserRegistrationDto;
-import com.bankaudit.helper.BankAuditConstant;
 import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.GeneralParameter;
 import com.bankaudit.model.User;

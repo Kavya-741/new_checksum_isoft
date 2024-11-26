@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dao.MaintUsergroupRolesDao;
 import com.bankaudit.dao.UserDeptMappingDao;
-import com.bankaudit.helper.BankAuditConstant;
 import com.bankaudit.model.MaintUsergroupRoles;
 import com.bankaudit.model.MaintUsergroupRolesWrk;
 import com.bankaudit.model.UserDeptMapping;

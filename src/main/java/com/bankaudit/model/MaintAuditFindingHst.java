@@ -5,21 +5,25 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
-@Table(name="maint_audit_finding")
+@Table(name="maint_audit_finding_hst")
 @Data
-public class MaintAuditFinding implements Serializable {
-
+public class MaintAuditFindingHst implements Serializable {
+	
 	@Id
+	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
+	
 	@Column(name="legal_entity_code")
 	private Integer legalEntityCode;
 	
-	@Id
 	@Column(name="finding_id")
 	private String findingId;	
 	
@@ -55,18 +59,5 @@ public class MaintAuditFinding implements Serializable {
 	
 	@Column(name="checker_timestamp")
 	private Date checkerTimestamp;
-
-		/**
-	 * @return the fCriticality
-	 */
-	public String getfCriticality() {
-		return fCriticality;
-	}
-
-	/**
-	 * @param fCriticality the fCriticality to set
-	 */
-	public void setfCriticality(String fCriticality) {
-		this.fCriticality = fCriticality;
-	}
+	
 }

@@ -17,6 +17,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dao.GeneralParameterDao;
 import com.bankaudit.dao.MaintEntityDao;
 import com.bankaudit.dao.UserDao;
@@ -26,7 +27,6 @@ import com.bankaudit.dto.LoginRequest;
 import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.dto.UpdateTokenDetailsRequest;
 import com.bankaudit.dto.UserRegistrationDto;
-import com.bankaudit.helper.BankAuditConstant;
 import com.bankaudit.helper.Constants;
 import com.bankaudit.helper.DomainUtil;
 import com.bankaudit.jwthelper.JwtTokenUtil;

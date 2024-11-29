@@ -6,15 +6,18 @@ import java.util.List;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.helper.BankAuditUtil;
@@ -166,5 +169,68 @@ public class MaintAuditProcessController {
 
 		return dataTableResponse;
 	}
+
+	@DeleteMapping(value="/deleteProcessByID/{legalEntityCode}/{processId}/{userId}",produces=MediaType.APPLICATION_JSON_VALUE)
+	ServiceStatus deleteProcessByID(@PathVariable("legalEntityCode")Integer legalEntityCode,
+			@PathVariable("processId") String processId, @PathVariable("userId") String userId){
+	ServiceStatus serviceStatus=new ServiceStatus();
+		
+		if(legalEntityCode !=null  && !BankAuditUtil.isEmptyString(processId)){
+			try {
+				maintAuditProcessService.deleteProcessByID(legalEntityCode, processId, userId);
+				serviceStatus.setStatus("success");
+				serviceStatus.setMessage("Record deleted successfully.");
+			} catch (Exception e) {
+				serviceStatus.setStatus("failure");
+				e.printStackTrace();
+				if(e instanceof org.springframework.dao.DataIntegrityViolationException) {
+					serviceStatus.setMessage("DATAINTGRTY_VIOLATION");
+				}
+				serviceStatus.setMessage("failure");
+			}
+		}else {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("invalid payload");
+		}
+		return serviceStatus;
+	}
+
+	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+	ServiceStatus updateMaintAuditProcess(@RequestBody MaintAuditProcess maintAuditProcess){
+		ServiceStatus serviceStatus=new ServiceStatus();
+		
+		if(maintAuditProcess!=null
+				&& maintAuditProcess.getLegalEntityCode()!=null
+				&& !BankAuditUtil.isEmptyString(maintAuditProcess.getProcessName())
+				&& !BankAuditUtil.isEmptyString(maintAuditProcess.getProcessCode())
+				&& !BankAuditUtil.isEmptyString(maintAuditProcess.getMaker())
+				){
+			
+			try {
+				if(maintAuditProcess.getStatus().equals(BankAuditConstant.STATUS_AUTH)){
+					maintAuditProcess.setCheckerTimestamp(new Date());
+				} else{
+					maintAuditProcess.setMakerTimestamp(new Date());
+				}
+			    maintAuditProcessService.updateMaintAuditProcess(maintAuditProcess);
+			    
+			    serviceStatus.setStatus("success");
+			    serviceStatus.setMessage("successfully updated");
+		
+			} catch (Exception e) {
+				serviceStatus.setStatus("failure");
+				serviceStatus.setMessage("failure");
+				if(e instanceof org.springframework.dao.DataIntegrityViolationException) {
+					serviceStatus.setMessage("DATAINTGRTY_VIOLATION");
+				}
+			}
+		}else {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("invalid payload ");
+		}
+		
+		return serviceStatus;
+	}
+
 
 }

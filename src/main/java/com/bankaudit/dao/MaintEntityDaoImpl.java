@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.ScrollMode;
@@ -540,6 +541,34 @@ public class MaintEntityDaoImpl  extends AbstractDao implements MaintEntityDao{
 				.setResultTransformer(Transformers.aliasToBean(MaintEntity.class))
 				.setParameter("legalEntityCode", legalEntityCode)
 				.setParameter("levelCode", levelCode).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MaintEntity> getEntityByLevelAndNotInGrpEntityMapping (Integer legalEntityCode, String levelCode, String status) {
+		logger.info("Inside getEntityByLevelAndNotInGrpEntityMapping .. "+legalEntityCode +" levelCode.."+levelCode +" status.."+status );
+		Session session=getSession();
+		return session.createQuery("from MaintEntity e"
+					+ " where  e.legalEntityCode =:legalEntityCode AND e.levelCode=:levelCode "
+					+ " AND e.status ='A' AND e.entityStatus='A'  "
+					+ " AND e.unitCode not in (select id from MaintEntityAuditSubgroupMapping m where m.legalEntityCode=e.legalEntityCode and m.mappingType='E' ) "
+					+ " AND e.unitCode not in (select id from MaintEntityAuditSubgroupMappingWrk m where m.legalEntityCode=e.legalEntityCode and m.mappingType='E' ) "
+					+ " ORDER BY e.unitName ")
+				.setParameter("legalEntityCode", legalEntityCode).setParameter("levelCode", levelCode).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MaintEntity> getMaintEntityByLegalEntityCodeAndAuditTypeCode(Integer legalEntityCode, String auditTypeCode) {
+		Session session=getSession();
+		return session.createQuery("from MaintEntity m "
+				+ " where m.legalEntityCode =:legalEntityCode "
+				+ " and m.unitCode in (select id from MaintEntityAuditSubgroupMapping where mappingType ='E' and auditTypeCode=:auditTypeCode) "
+				+ " and m.entityStatus='"+BankAuditConstant.STATUS_ACTIVE+"' "
+						+ " order by  m.unitName asc ")
+				//.setResultTransformer(Transformers.aliasToBean(MaintEntity.class))
+				.setParameter("legalEntityCode", legalEntityCode)
+				.setParameter("auditTypeCode", auditTypeCode).list();
 	}
 	
 	

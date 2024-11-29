@@ -188,5 +188,16 @@ public class MaintEntityServiceImpl implements MaintEntityService {
 		return maintEntityDao.getMaintEntityByLegalEntityCodeAndLevelCode(legalEntityCode,levelCode);
 	}
 
+	@Override
+	public List<MaintEntity> getEntityByLevelAndNotInGrpEntityMapping (Integer legalEntityCode, String levelCode, String status) {
+		List<MaintEntity> entities=maintEntityDao.getEntityByLevelAndNotInGrpEntityMapping( legalEntityCode,  levelCode ,status);
+	 	return entities ;
+	}
+
+	@Override
+	public List<MaintEntity> getMaintEntityByLegalEntityCodeAndAuditTypeCode(Integer legalEntityCode, String auditTypeCode) {
+		return maintEntityDao.getMaintEntityByLegalEntityCodeAndAuditTypeCode(legalEntityCode, auditTypeCode);
+	}
+
 
 }

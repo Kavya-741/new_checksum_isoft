@@ -16,4 +16,10 @@ public interface MaintAuditProcessService {
 	DataTableResponse getMaintAuditProcess(Integer legalEntityCode, String search, Integer orderColumn,
 			String orderDirection, Integer page, Integer size);
 
+	void deleteProcessByID(Integer legalEntityCode, String processId, String userId);
+
+	void updateMaintAuditProcess(MaintAuditProcess maintAuditProcess);
+
+	MaintAuditProcess getMaintAuditProcess(Integer legalEntityCode, String processCode, String status);
+
 }

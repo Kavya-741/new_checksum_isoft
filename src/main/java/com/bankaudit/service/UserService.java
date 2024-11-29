@@ -33,10 +33,13 @@ public interface UserService {
 
 	// public void updateUser(UserRegistrationDto userRegistrationDto);
 
-	public void createUser(UserRegistrationDto userRegistrationDto);
+	void createUser(UserRegistrationDto userRegistrationDto);
 
-	public List<User> getUser(Integer legalEntityCode, String unitCode,String userId,String status);
+	List<User> getUser(Integer legalEntityCode, String unitCode,String userId,String status);
 
-	public void updateUser(UserRegistrationDto userRegistrationDto);
+	void updateUser(UserRegistrationDto userRegistrationDto);
+
+	List<User> getUsersByLevelAndNotInGrpEntityMapping (Integer legalEntityCode, String levelCode, String status);
+
 
 }

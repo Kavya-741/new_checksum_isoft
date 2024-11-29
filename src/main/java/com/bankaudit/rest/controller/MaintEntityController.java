@@ -244,5 +244,38 @@ public class MaintEntityController {
 		}
 				return serviceStatus;
 	}
+
+	@RequestMapping(value="/getByLegalEntityCode/{legalEntityCode}/{auditTypeCode}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	ServiceStatus getMaintEntityByLegalEntityCodeAndAuditTypeCode(
+			@PathVariable("legalEntityCode") Integer legalEntityCode,@PathVariable("auditTypeCode") String auditTypeCode
+			){
+		ServiceStatus serviceStatus=new ServiceStatus();
+		
+		if(legalEntityCode!=null
+				){
+			try {
+				List<MaintEntity> maintEntities=maintEntityService.getMaintEntityByLegalEntityCodeAndAuditTypeCode(legalEntityCode, auditTypeCode);
+				
+				if(maintEntities!=null&&!maintEntities.isEmpty()){
+					serviceStatus.setResult(maintEntities);
+					serviceStatus.setStatus("success");
+					serviceStatus.setMessage("successfuly retrieved ");
+				}else {
+					serviceStatus.setStatus("failure");
+					serviceStatus.setMessage(" not found any");
+				}
+				
+			} catch (Exception e) {
+				serviceStatus.setStatus("failure");
+				serviceStatus.setMessage("failure");
+				e.printStackTrace();
+			}
+			
+		}else {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("invalid parameter");
+		}
+				return serviceStatus;
+	}
 	
 }

@@ -784,12 +784,12 @@ public class UserServiceImpl implements UserService {
 					 }
 				 }
 			 }
-			 // User to Audit mapping, End here
-	
-			 
 		}
 	}
 
-
-
+    @Override
+	public List<User> getUsersByLevelAndNotInGrpEntityMapping(Integer legalEntityCode, String levelCode, String status) {
+		List<User> users=userDao.getUsersByLevelAndNotInGrpEntityMapping( legalEntityCode,  levelCode ,status);
+	 	return users ;
+	}
 }

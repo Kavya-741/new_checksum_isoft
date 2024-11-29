@@ -18,4 +18,8 @@ public interface MaintAuditActivityService {
 	
 	void deleteActivityByID(Integer legalEntityCode, String activityId, String userId);
 
+	void updateMaintAuditActivity(MaintAuditActivity maintAuditActivity);
+
+	MaintAuditActivity getMaintAuditActivity(Integer legalEntityCode, String activityId,String status);
+
 }

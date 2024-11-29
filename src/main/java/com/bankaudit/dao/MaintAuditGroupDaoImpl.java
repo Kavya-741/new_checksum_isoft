@@ -195,5 +195,99 @@ public class MaintAuditGroupDaoImpl extends AbstractDao implements MaintAuditGro
 		return dataTableResponse;
 		
 	}
+
+	@Override
+	public void deleteMaintAuditGroup(Integer legalEntityCode, String auditGroupCode, String auditTypeCode,
+			String statusAuth) {
+
+		Session session=getSession();
+		if(!BankAuditConstant.STATUS_AUTH.equals(statusAuth)){
+			session.createQuery("delete from MaintAuditGroupWrk where legalEntityCode =:legalEntityCode  and "
+					+ " auditGroupCode =:auditGroupCode "
+					+ " and auditTypeCode =:auditTypeCode  ")
+			.setParameter("auditTypeCode", auditTypeCode)
+			.setParameter("auditGroupCode", auditGroupCode)
+			.setParameter("legalEntityCode", legalEntityCode).executeUpdate();
+		}else {
+			session.createQuery("delete from MaintAuditGroup where legalEntityCode =:legalEntityCode  and "
+					+ " auditGroupCode =:auditGroupCode "
+					+ " and auditTypeCode =:auditTypeCode  ")
+			.setParameter("auditTypeCode", auditTypeCode)
+			.setParameter("auditGroupCode", auditGroupCode)
+			.setParameter("legalEntityCode", legalEntityCode).executeUpdate();
+		}
+	}
+
+	@Override
+	public Boolean isMaintAuditGroupLE(Integer legalEntityCode, String auditGroupCode) {
+
+		logger.info("Inside isMaintAuditGroupLE.."+ legalEntityCode+" :: "+auditGroupCode);
+		Session session=getSession();
+		Long count=(Long)session.createQuery(
+				" select count(*) "
+				+ " from MaintAuditGroup   "
+				+ " where "
+				+ " legalEntityCode =:legalEntityCode "
+				+ " and auditGroupCode =:auditGroupCode")
+		.setParameter("legalEntityCode", legalEntityCode)
+		.setParameter("auditGroupCode", auditGroupCode).uniqueResult();
+		
+		Long count1=(Long)session.createQuery(	
+				" select count(*) "
+				+ " from MaintAuditGroupWrk   "
+				+ " where "
+				+ " legalEntityCode =:legalEntityCode "
+				+ " and auditGroupCode =:auditGroupCode")
+		.setParameter("legalEntityCode", legalEntityCode)
+		.setParameter("auditGroupCode", auditGroupCode).uniqueResult();
+						
+		logger.info("Mst .. "+ count + " Wrk .. "+ count1);
+		Boolean flag=false;
+		if((count1!=null && count1 >0)||(count!=null && count >0)){
+			flag=true;
+		}else {
+			flag=false;
+		}
+	return flag;
+	}
+
+	@Override
+	public Boolean isMaintAuditGroup(Integer legalEntityCode, String auditTypeCode, String auditGroupCode) {
+
+		logger.info("Inside isMaintAuditGroup.."+ legalEntityCode+" :: "+auditTypeCode+" :: "+auditGroupCode);
+		Session session=getSession();
+		Long count=(Long)session.createQuery(
+				" select count(*) "
+				+ " from MaintAuditGroup   "
+				+ " where "
+				+ " legalEntityCode =:legalEntityCode "
+				+ " and auditGroupCode =:auditGroupCode"
+				+ " and auditTypeCode =:auditTypeCode  ")
+		.setParameter("legalEntityCode", legalEntityCode)
+		.setParameter("auditGroupCode", auditGroupCode)
+		.setParameter("auditTypeCode", auditTypeCode).uniqueResult();
+		
+		Long count1=(Long)session.createQuery(	
+				
+				" select count(*) "
+				+ " from MaintAuditGroupWrk   "
+				+ " where "
+				+ " legalEntityCode =:legalEntityCode "
+				+ " and auditGroupCode =:auditGroupCode"
+				+ " and auditTypeCode =:auditTypeCode  ")
+		.setParameter("legalEntityCode", legalEntityCode)
+		.setParameter("auditGroupCode", auditGroupCode)
+		.setParameter("auditTypeCode", auditTypeCode).uniqueResult();
+						
+		logger.info("Mst .. "+ count + " Wrk .. "+ count1);
+		Boolean flag=false;
+		if((count1!=null && count1 >0)||(count!=null && count >0)){
+			flag=true;
+		}else {
+			flag=false;
+		}
+	return flag;
+	}
+	
 	
 }

@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.helper.BankAuditUtil;
@@ -194,6 +196,47 @@ public class MaintAuditActivityController {
 			serviceStatus.setMessage("invalid payload");
 		}
 		return serviceStatus;
-	}	
+	}
+	
+	
+	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+	ServiceStatus updateMaintAuditActivity(@RequestBody MaintAuditActivity maintAuditActivity){
+		ServiceStatus serviceStatus=new ServiceStatus();
+		
+		if(maintAuditActivity!=null
+				&& maintAuditActivity.getLegalEntityCode()!=null
+				&& !BankAuditUtil.isEmptyString(maintAuditActivity.getActivityName())
+				&& !BankAuditUtil.isEmptyString(maintAuditActivity.getActivityCode())
+				&& !BankAuditUtil.isEmptyString(maintAuditActivity.getMaker())
+				){
+			
+			try {
+				if(maintAuditActivity.getStatus().equals(BankAuditConstant.STATUS_AUTH)){
+					maintAuditActivity.setCheckerTimestamp(new Date());
+				} else{
+					maintAuditActivity.setMakerTimestamp(new Date());
+				}  
+			    maintAuditActivityService.updateMaintAuditActivity(maintAuditActivity);
+			    
+			    serviceStatus.setStatus("success");
+			    serviceStatus.setMessage("successfully updated");
+		
+			} catch (Exception e) {
+				serviceStatus.setStatus("failure");
+				serviceStatus.setMessage("failure");
+				if(e instanceof org.springframework.dao.DataIntegrityViolationException) {
+					serviceStatus.setMessage("DATAINTGRTY_VIOLATION");
+				}
+			}
+			
+			
+		}else {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("invalid payload ");
+		}
+		
+		return serviceStatus;
+	}
+	
 	
 }

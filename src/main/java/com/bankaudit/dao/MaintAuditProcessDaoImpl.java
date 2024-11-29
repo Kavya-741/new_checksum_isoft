@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.transform.ResultTransformer;
 import org.springframework.stereotype.Repository;
 
+import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintAuditProcess;
@@ -239,5 +240,25 @@ public class MaintAuditProcessDaoImpl extends AbstractDao implements MaintAuditP
 		}
 		return dataTableResponse;
 
+	}
+
+	@Override
+	public void deleteMaintAuditProcess(Integer legalEntityCode, String processId, String statusUnauth) {
+
+		Session session = getSession();
+
+		if (!BankAuditConstant.STATUS_AUTH.equals(statusUnauth)) {
+
+			session.createQuery("delete from MaintAuditProcessWrk  "
+					+ " where legalEntityCode =:legalEntityCode "
+					+ " and  processId =:processId  ").setParameter("processId", processId)
+					.setParameter("legalEntityCode", legalEntityCode).executeUpdate();
+
+		} else {
+			session.createQuery("delete from MaintAuditProcess  "
+					+ " where legalEntityCode =:legalEntityCode "
+					+ " and  processId =:processId ").setParameter("processId", processId)
+					.setParameter("legalEntityCode", legalEntityCode).executeUpdate();
+		}
 	}
 }

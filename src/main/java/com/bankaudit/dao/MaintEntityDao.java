@@ -20,5 +20,11 @@ public interface MaintEntityDao extends Dao {
 
 	List<MaintEntity> getMaintEntityByLegalEntityCodeAndLevelCode(Integer legalEntityCode, String levelCode);
 
+	List<MaintEntity> getEntityByLevelAndNotInGrpEntityMapping (Integer legalEntityCode, String levelCode, String status);
+
+	List<MaintEntity> getMaintEntityByLegalEntityCodeAndAuditTypeCode(Integer legalEntityCode, String auditTypeCode);
+
+
+
 	
 }

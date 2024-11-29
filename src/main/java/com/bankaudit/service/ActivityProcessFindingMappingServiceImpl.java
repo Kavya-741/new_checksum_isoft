@@ -2,6 +2,7 @@ package com.bankaudit.service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
@@ -135,5 +136,14 @@ public class ActivityProcessFindingMappingServiceImpl implements ActivityProcess
 
 	public void deleteActivityProcessFindingMapping(Integer legalEntityCode, String mappingId, String statusUnauth) {
 		activityProcessFindingMappingDao.deleteActivityProcessFindingMapping(legalEntityCode, mappingId, statusUnauth);
+	}
+
+	@Override
+	public List<String> getActivityProcessFindingMappingValues(String legalEntityCode, String auditTypeCode,
+			String auditGroupCode, String auditSubGroupCode, String activityCode, String processCode,
+			String findingCode,String createOrUpdate) {
+		return activityProcessFindingMappingDao.getActivityProcessFindingMappingValues( legalEntityCode,  auditTypeCode,
+				 auditGroupCode,  auditSubGroupCode,  activityCode,  processCode,
+				 findingCode,createOrUpdate);
 	}
 }

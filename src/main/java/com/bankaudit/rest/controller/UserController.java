@@ -73,15 +73,8 @@ public class UserController {
 		return userService.getUserRolesAndDetails(authorizationHeader);
 	}
 
-	/**
-	 * This method is use to Creates the user.
-	 *
-	 * @param userRegistrationDto
-	 *            specify the user registration dto
-	 * @return the service status class object with response status and payload
-	 *         .
-	 */
-	@RequestMapping(method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+
+	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
 	ServiceStatus createUser(@RequestBody UserRegistrationDto userRegistrationDto,
 			@RequestParam(required=false,value="legalEntityCode")String legalEntityCodeStr,
 			@RequestParam(required=false,value="userCode")String userId,
@@ -131,30 +124,8 @@ public class UserController {
 		}		
 		return serviceStatus;
 	}
-	
-	/**
-	 * This method is use to Gets the user.
-	 *
-	 * @param drawStr
-	 *            specify the draw str
-	 * @param length
-	 *            specify the length
-	 * @param start
-	 *            specify the start
-	 * @param search
-	 *            specify the search
-	 * @param orderColumnStr
-	 *            specify the order column str
-	 * @param orderDirection
-	 *            specify the order direction
-	 * @param legalEntityCodeStr
-	 *            specify the legal entity code str
-	 * @param userId
-	 *            specify the user id
-	 * @return the data table response class object with response status and
-	 *         payload .
-	 */
-	@RequestMapping(value="/getAll",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE) 
+
+	@GetMapping(value="/getAll",produces=MediaType.APPLICATION_JSON_VALUE) 
 	DataTableResponse getUser(
 			@RequestParam("draw") String drawStr,
 			@RequestParam("length") String length,
@@ -197,7 +168,7 @@ public class UserController {
 	}
 	
 
-	@RequestMapping(value="/get",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE) 
+	@GetMapping(value="/get",produces=MediaType.APPLICATION_JSON_VALUE) 
 	ServiceStatus getUser(
 			@RequestParam("legalEntityCode")String legalEntityCodeStr,
 			@RequestParam(required=false,value="unitCode") String unitCode,
@@ -235,20 +206,7 @@ public class UserController {
 		return serviceStatus;
 	}
 
-	
-	
-	
-	
-	
-	/**
-	 * This method is use to Update user.
-	 *
-	 * @param userRegistrationDto
-	 *            specify the user registration dto
-	 * @return the service status class object with response status and payload
-	 *         .
-	 */
-	@RequestMapping(method=RequestMethod.PUT,consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
 	ServiceStatus updateUser(@RequestBody UserRegistrationDto userRegistrationDto,
 			@RequestParam(required=false,value="legalEntityCode")String legalEntityCodeStr,
 			@RequestParam(required=false,value="userCode")String userId,
@@ -307,18 +265,8 @@ public class UserController {
 		return serviceStatus;
 	}
 	
-	
-	/**
-	 * This method is use to Checks if is user.
-	 *
-	 * @param legalEntityCode
-	 *            specify the legal entity code
-	 * @param userId
-	 *            specify the user id
-	 * @return the service status class object with response status and payload
-	 *         .
-	 */
-	@RequestMapping(value="/isUser/{legalEntityCode}/{userId}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+
+	@GetMapping(value="/isUser/{legalEntityCode}/{userId}",produces=MediaType.APPLICATION_JSON_VALUE)
 	ServiceStatus isUser(@PathVariable("legalEntityCode")Integer legalEntityCode,
 			@PathVariable("userId") String userId
 			){

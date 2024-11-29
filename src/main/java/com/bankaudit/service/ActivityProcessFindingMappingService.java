@@ -1,5 +1,7 @@
 package com.bankaudit.service;
 
+import java.util.List;
+
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.model.ActivityProcessFindingMapping;
 
@@ -17,9 +19,13 @@ public interface ActivityProcessFindingMappingService {
 
 	void updateActivityProcessFindingMapping(ActivityProcessFindingMapping activityProcessFindingMapping);
 
-	public ActivityProcessFindingMapping getActivityProcessFindingMapping(Integer legalEntityCode, String mappingId,
+	ActivityProcessFindingMapping getActivityProcessFindingMapping(Integer legalEntityCode, String mappingId,
 			String status);
 
 	void deleteActivityProcessFindingMapping(Integer legalEntityCode, String mappingId, String statusUnauth);
+
+	List<String> getActivityProcessFindingMappingValues(String legalEntityCode, String auditTypeCode,
+			String auditGroupCode, String auditSubGroupCode, String activityCode, String processCode,
+			String findingCode,String createOrUpdate);
 
 }

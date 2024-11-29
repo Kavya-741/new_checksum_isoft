@@ -2,6 +2,8 @@
 package com.bankaudit.rest.controller;
 
 import java.util.Date;
+import java.util.List;
+
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -220,6 +223,45 @@ public class ActivityProcessFindingMappingController {
 		}else {
 			serviceStatus.setStatus("failure");
 			serviceStatus.setMessage("invalid legalEntityCode ");
+		}
+		
+		return serviceStatus;
+	}
+
+	@GetMapping(value="/getDynamicValues",produces=MediaType.APPLICATION_JSON_VALUE)
+	ServiceStatus getActivityProcessFindingMappingValues(
+		/*	@PathVariable("createOrUpdate")String createOrUpdate,*/
+			@RequestParam(required=true,value="legalEntityCode")String legalEntityCode,
+			@RequestParam(required=true,value="auditTypeCode") String auditTypeCode,
+			@RequestParam(required=false,value="auditGroupCode") String auditGroupCode,
+			@RequestParam(required=false,value="auditSubGroupCode") String auditSubGroupCode,
+			@RequestParam(required=false,value="activityId") String activityId,
+			@RequestParam(required=false,value="processId") String processId,
+			@RequestParam(required=false,value="findingId") String findingId
+			){
+		ServiceStatus serviceStatus=new ServiceStatus();
+		if(!BankAuditUtil.isEmptyString(auditTypeCode)
+				&& !BankAuditUtil.isEmptyString(legalEntityCode)){
+			try {
+				List<String>  values = activityProcessFindingMappingService
+						.getActivityProcessFindingMappingValues(legalEntityCode , auditTypeCode , auditGroupCode , 
+								auditSubGroupCode ,activityId, processId,findingId,"C");
+			    if(values!=null && !values.isEmpty()){
+			    	serviceStatus.setResult(values);
+				    serviceStatus.setStatus("success");
+				    serviceStatus.setMessage("successfully retrieved ");	
+			    }else {
+					serviceStatus.setStatus("failure");
+					serviceStatus.setMessage(" No records found ");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				serviceStatus.setStatus("failure");
+				serviceStatus.setMessage("failure");
+			}
+		}else {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("invalid payload ");
 		}
 		
 		return serviceStatus;

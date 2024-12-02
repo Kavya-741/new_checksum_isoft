@@ -18,7 +18,7 @@ import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.SequenceDto;
 import com.bankaudit.model.ActivityProcessFindingMapping;
 import com.bankaudit.model.User;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Repository("activityProcessFindingMappingDao")
 public class ActivityProcessFindingMappingDaoImpl extends AbstractDao implements ActivityProcessFindingMappingDao {

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.model.MaintReportStandardStmt;
 import com.bankaudit.service.MaintReportStandardStmtService;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 import com.bankaudit.dto.ServiceStatus;
 
 @CrossOrigin("*")

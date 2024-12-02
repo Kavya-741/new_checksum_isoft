@@ -21,7 +21,7 @@ import com.bankaudit.model.MaintEntity;
 import com.bankaudit.model.MaintEntityAuditSubgroupMapping;
 import com.bankaudit.model.MaintEntityAuditSubgroupMappingWrk;
 import com.bankaudit.model.User;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Service
 @Transactional("transactionManager")

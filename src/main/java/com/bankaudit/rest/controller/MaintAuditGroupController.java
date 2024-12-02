@@ -26,7 +26,7 @@ import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.model.MaintAuditGroup;
 import com.bankaudit.service.MaintAuditGroupService;
 import com.bankaudit.service.SequenceAppenderService;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @CrossOrigin("*")
 @RestController

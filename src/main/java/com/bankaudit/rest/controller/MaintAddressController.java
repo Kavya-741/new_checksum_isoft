@@ -9,9 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.bankaudit.dto.ServiceStatus;
-import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintAddress;
 import com.bankaudit.service.MaintAddressService;
+import com.bankaudit.util.BankAuditUtil;
 
 @CrossOrigin("*")
 @RestController

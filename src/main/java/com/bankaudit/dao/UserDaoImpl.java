@@ -28,7 +28,7 @@ import com.bankaudit.model.GeneralParameter;
 import com.bankaudit.model.MaintEntityAuditSubgroupMapping;
 import com.bankaudit.model.User;
 import com.bankaudit.model.UserWrk;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Repository
 public class UserDaoImpl extends AbstractDao implements UserDao {
@@ -171,7 +171,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 				+ "        checker_timestamp AS checkerTimestamp, "                    // ChECKER_tIMESTAmP      
 				+ "        auth_rej_remarks as authRejRemarks "                           // sysdate_timesTAMP   
 				//+ " 	   (SELECT GROUP_CONCAT(concat(m.user_role_id,'-',r.ug_role_name)) FROM user_role_mapping m,maint_usergroup_roles r  "
-				+ " 	   ,(SELECT GROUP_CONCAT(r.ug_role_name) FROM user_role_mapping m,maint_usergroup_roles r  "
+				+ " 	   ,(SELECT group_concat(r.ug_role_name) FROM user_role_mapping m,maint_usergroup_roles r  "
 				+ "				WHERE m.legal_entity_code=u.legal_entity_code AND m.user_id=u.user_id AND m.legal_entity_code=r.legal_entity_code AND m.user_role_id=r.ug_role_code "
 				+ "				GROUP BY m.user_id) as roles "							// Roles - to get the Roles for each User separted by Comma
 				+ " FROM user u " 
@@ -211,7 +211,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 				+ "        checker_timestamp AS checkerTimestamp, " 
 				+ "        auth_rej_remarks as authRejRemarks " 
 				//+ "		   ,(SELECT GROUP_CONCAT(concat(m.user_role_id,'-',r.ug_role_name)) FROM user_role_mapping_wrk m,maint_usergroup_roles r "
-				+ "		   ,(SELECT GROUP_CONCAT(r.ug_role_name) FROM user_role_mapping_wrk m,maint_usergroup_roles r "
+				+ "		   ,(SELECT group_concat(r.ug_role_name) FROM user_role_mapping_wrk m,maint_usergroup_roles r "
 				+ "			 WHERE m.legal_entity_code=stg_u.legal_entity_code and m.user_id=stg_u.user_id and m.legal_entity_code=r.legal_entity_code and m.user_role_id=r.ug_role_code "
 				+ "			 GROUP BY m.user_id) as roles "
 				+ " FROM user_wrk stg_u " 

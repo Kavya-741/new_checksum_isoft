@@ -51,11 +51,9 @@ public class HibernateConfiguration {
 
 	private Properties hibernateProperties() {
 		Properties properties = new Properties();
-		properties.put("hibernate.dialect",environment.getRequiredProperty("spring.jpa.properties.hibernate.dialect"));
+		properties.put("hibernate.dialect","com.bankaudit.config.CustomMySQLDialect");
 		properties.put("hibernate.show_sql",environment.getRequiredProperty("spring.jpa.show-sql"));
 		properties.put("hibernate.format_sql",environment.getRequiredProperty("spring.jpa.properties.hibernate.format_sql"));
-		// we need to added this property to text file
-		/*properties.put("hibernate.jdbc.batch_size","20"); */
 		return properties;
 	}
 

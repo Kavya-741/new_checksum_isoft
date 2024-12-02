@@ -23,7 +23,7 @@ import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.MaintEntityAuditSubGroupMappingDto;
 import com.bankaudit.model.MaintEntityAuditSubgroupMapping;
 import com.bankaudit.service.MaintEntityAuditSubgroupMappingService;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 import com.bankaudit.dto.ServiceStatus;
 
 @CrossOrigin("*")

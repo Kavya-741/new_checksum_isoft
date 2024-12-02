@@ -29,6 +29,4 @@ public interface MaintEntityService {
 
 	List<MaintEntity> getMaintEntityByLegalEntityCodeAndAuditTypeCode(Integer legalEntityCode, String auditTypeCode);
 
-
-
 }

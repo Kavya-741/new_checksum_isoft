@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.ServiceStatus;
-import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintAuditSubgroup;
 import com.bankaudit.service.MaintAuditSubgroupService;
+import com.bankaudit.util.BankAuditUtil;
 
 @CrossOrigin("*")
 @RestController

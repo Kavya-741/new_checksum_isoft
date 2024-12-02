@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bankaudit.dto.ServiceStatus;
-import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.helper.Constants;
 import com.bankaudit.model.GeneralParameter;
 import com.bankaudit.service.GeneralParameterService;
+import com.bankaudit.util.BankAuditUtil;
 
 @CrossOrigin("*")
 @RestController

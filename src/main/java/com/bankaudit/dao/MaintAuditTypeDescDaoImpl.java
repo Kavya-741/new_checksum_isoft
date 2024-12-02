@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.model.MaintAuditTypeDesc;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Repository("maintAuditTypeDescDao")
 public class MaintAuditTypeDescDaoImpl extends AbstractDao implements MaintAuditTypeDescDao{

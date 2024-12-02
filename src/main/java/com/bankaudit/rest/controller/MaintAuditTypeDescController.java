@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.ServiceStatus;
-import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintAuditTypeDesc;
 import com.bankaudit.service.MaintAuditTypeDescService;
+import com.bankaudit.util.BankAuditUtil;
 
 @CrossOrigin("*")
 @RestController

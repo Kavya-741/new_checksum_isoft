@@ -19,7 +19,7 @@ import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.process.model.AuditDocumentDetails;
 import com.bankaudit.process.model.AuditDocumentDetailsWrk;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Repository("auditTypeDocumentDetailsDao")
 public class AuditTypeDocumentDetailsDaoImpl extends AbstractDao implements AuditTypeDocumentDetailsDao{
@@ -243,12 +243,12 @@ public class AuditTypeDocumentDetailsDaoImpl extends AbstractDao implements Audi
 
 				insertToWrk.append(" insert into audit_document_details_wrk(legal_entity_code,audit_type_code,document_type,"
 				+ " system_id,file_name,reference_number,reference_path,status,role, maker,"
-				+ " maker_timestamp,checker,checker_timestamp,businessdate_timestamp, "
-				+ " sysdate_timestamp,entity_status, auth_rej_remarks, document_name, document_sub_type) "
+				+ " maker_timestamp,checker,checker_timestamp, "
+				+ " entity_status, auth_rej_remarks, document_name, document_sub_type) "
 				+ " Select  legal_entity_code,audit_type_code,document_type,"
 				+ " system_id,file_name,reference_number,reference_path,'"+BankAuditConstant.STATUS_UNAUTH+"',role, maker,"
-				+ " maker_timestamp,checker,checker_timestamp,businessdate_timestamp, "
-				+ " sysdate_timestamp,entity_status, auth_rej_remarks, document_name, document_sub_type from audit_document_details "
+				+ " maker_timestamp,checker,checker_timestamp, "
+				+ " entity_status, auth_rej_remarks, document_name, document_sub_type from audit_document_details "
 				+ " Where  legal_entity_code =:legalEntityCode "
 				+ " and audit_type_code=:auditTypeCode "
 				+ " and  document_type=:documentType ");
@@ -320,12 +320,12 @@ public class AuditTypeDocumentDetailsDaoImpl extends AbstractDao implements Audi
 				//Insert into work to authorize
 				StringBuilder insertToWrk = new StringBuilder("insert into audit_document_details_wrk(legal_entity_code,audit_type_code,document_type,"
 						+ " system_id,file_name,reference_number,reference_path,status,role, maker,"
-						+ " maker_timestamp,checker,checker_timestamp,businessdate_timestamp, "
-						+ " sysdate_timestamp,entity_status, auth_rej_remarks, document_name, document_sub_type) "
+						+ " maker_timestamp,checker,checker_timestamp, "
+						+ " entity_status, auth_rej_remarks, document_name, document_sub_type) "
 						+ " Select  legal_entity_code,audit_type_code,document_type,"
 						+ " system_id,file_name,reference_number,reference_path,status,role, maker,"
-						+ " maker_timestamp,checker,checker_timestamp,businessdate_timestamp, "
-						+ " sysdate_timestamp,entity_status, auth_rej_remarks, document_name, document_sub_type from audit_document_details "
+						+ " maker_timestamp,checker,checker_timestamp, "
+						+ " entity_status, auth_rej_remarks, document_name, document_sub_type from audit_document_details "
 						+ " Where  legal_entity_code =:legalEntityCode "
 						+ " and audit_type_code=:auditTypeCode "
 						+ " and  document_type=:documentType ");
@@ -460,13 +460,13 @@ public class AuditTypeDocumentDetailsDaoImpl extends AbstractDao implements Audi
 				//Insert all authorized to master
 				StringBuilder insertToMaster = new StringBuilder("insert into audit_document_details(legal_entity_code,audit_type_code,document_type,"
 						+ " system_id,file_name,reference_number,reference_path,status,role, maker,"
-						+ " maker_timestamp,checker,checker_timestamp,businessdate_timestamp, "
-						+ " sysdate_timestamp,entity_status, auth_rej_remarks, document_name, document_sub_type) "
+						+ " maker_timestamp,checker,checker_timestamp, "
+						+ " entity_status, auth_rej_remarks, document_name, document_sub_type) "
 						+ " Select  legal_entity_code,audit_type_code,document_type,"
 						+ " system_id,file_name,reference_number,reference_path,status,role, maker,"
-						+ " maker_timestamp,checker,checker_timestamp,businessdate_timestamp, "
+						+ " maker_timestamp,checker,checker_timestamp, "
 						//" sysdate_timestamp,entity_status, auth_rej_remarks, document_name,document_sub_type from audit_document_details_wrk "
-						+ " sysdate_timestamp,'"+BankAuditConstant.STATUS_ACTIVE+"' , auth_rej_remarks, document_name,document_sub_type from audit_document_details_wrk "
+						+ "'"+BankAuditConstant.STATUS_ACTIVE+"' , auth_rej_remarks, document_name,document_sub_type from audit_document_details_wrk "
 						+ " Where  legal_entity_code =:legalEntityCode "
 						+ " and audit_type_code=:auditTypeCode"
 						+ " and  document_type=:documentType " 
@@ -590,12 +590,12 @@ public class AuditTypeDocumentDetailsDaoImpl extends AbstractDao implements Audi
 			//insert all from master to work to authorize if any
 			StringBuilder insertToWrk = new StringBuilder("insert into audit_document_details_wrk(legal_entity_code,audit_type_code,document_type,"
 					+ " system_id,file_name,reference_number,reference_path,status,role, maker,"
-					+ " maker_timestamp,checker,checker_timestamp,businessdate_timestamp, "
-					+ " sysdate_timestamp,entity_status, auth_rej_remarks, document_name, document_sub_type) "
+					+ " maker_timestamp,checker,checker_timestamp, "
+					+ " entity_status, auth_rej_remarks, document_name, document_sub_type) "
 					+ " Select  legal_entity_code,audit_type_code,document_type,"
 					+ " system_id,file_name,reference_number,reference_path,status,role, maker,"
-					+ " maker_timestamp,checker,checker_timestamp,businessdate_timestamp, "
-					+ " sysdate_timestamp,entity_status, auth_rej_remarks, document_name, document_sub_type from audit_document_details "
+					+ " maker_timestamp,checker,checker_timestamp, "
+					+ " entity_status, auth_rej_remarks, document_name, document_sub_type from audit_document_details "
 					+ " Where  legal_entity_code =:legalEntityCode "
 					+ " and audit_type_code=:auditTypeCode "
 					+ " and  document_type=:documentType  "
@@ -670,8 +670,7 @@ public class AuditTypeDocumentDetailsDaoImpl extends AbstractDao implements Audi
 				  + "  status, "
 				  + "  auth_rej_remarks, "
 				  + " maker,  checker, "
-	    		  + " maker_timestamp, checker_timestamp, "
-	    		  + " businessdate_timestamp, sysdate_timestamp "
+	    		  + " maker_timestamp, checker_timestamp "
 				  + " From (SELECT Distinct "
 						  +" legal_entity_code, " 						  
 						  +"  (select concat(a.audit_type_code,'-',a.audit_type_desc) from maint_audit_type_desc a "
@@ -682,8 +681,7 @@ public class AuditTypeDocumentDetailsDaoImpl extends AbstractDao implements Audi
 			    		 
 			    		  + " auth_rej_remarks,"
 			    		  + " maker,  checker, "
-			    		  + " maker_timestamp, checker_timestamp, "
-			    		  + " businessdate_timestamp, sysdate_timestamp "
+			    		  + " maker_timestamp, checker_timestamp "
 			    		  + "  "			    		 
 						  +"  FROM ");
 							 if(status.equals(BankAuditConstant.STATUS_AUTH)){
@@ -704,9 +702,7 @@ public class AuditTypeDocumentDetailsDaoImpl extends AbstractDao implements Audi
 						  + " '' as maker, "
 						  + " '' as checker, "
 			    		  + " CURRENT_TIMESTAMP as maker_timestamp, "
-			    		  + " CURRENT_TIMESTAMP as checker_timestamp, "
-			    		  + " CURRENT_TIMESTAMP as businessdate_timestamp,"
-			    		  + " CURRENT_TIMESTAMP as sysdate_timestamp "
+			    		  + " CURRENT_TIMESTAMP as checker_timestamp "
 						  + " from maint_audit_type_desc a WHERE a.legal_entity_code =:legal_entity_code "
 						  + " and audit_type_code not in "
 						  					 + "( SELECT audit_type_code FROM audit_document_details_wrk Where legal_entity_code =:legal_entity_code"   

@@ -18,11 +18,11 @@ import org.springframework.stereotype.Repository;
 
 import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
-import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintAuditParameter;
 import com.bankaudit.model.MaintAuditParameterDerived;
 import com.bankaudit.model.MaintAuditParameterWrk;
 import com.bankaudit.model.MaintAuditTypeDesc;
+import com.bankaudit.util.BankAuditUtil;
 
 @Repository("maintAuditParameterDao")
 public class MaintAuditParameterDaoImpl extends AbstractDao implements MaintAuditParameterDao{

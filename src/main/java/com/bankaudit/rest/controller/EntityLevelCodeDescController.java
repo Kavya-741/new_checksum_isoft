@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.ServiceStatus;
-import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.EntityLevelCodeDesc;
 import com.bankaudit.service.EntityLevelCodeDescService;
+import com.bankaudit.util.BankAuditUtil;
 
 @CrossOrigin("*")
 @RestController

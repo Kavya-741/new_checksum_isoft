@@ -25,7 +25,7 @@ import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.model.ActivityProcessFindingMapping;
 import com.bankaudit.service.ActivityProcessFindingMappingService;
 import com.bankaudit.service.SequenceAppenderService;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @CrossOrigin("*")
 @RestController

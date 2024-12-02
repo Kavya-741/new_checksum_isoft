@@ -17,7 +17,7 @@ import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.model.EntityLevelCodeDesc;
 import com.bankaudit.service.EntityLevelCodeDescServiceImpl;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Repository("entityLevelCodeDescDao")
 public class EntityLevelCodeDescDaoImpl extends AbstractDao implements EntityLevelCodeDescDao {

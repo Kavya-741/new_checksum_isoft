@@ -26,10 +26,10 @@ import org.springframework.http.MediaType;
 
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.ServiceStatus;
-import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintAuditParameter;
 import com.bankaudit.model.MaintAuditParameterWrk;
 import com.bankaudit.service.MaintAuditParameterService;
+import com.bankaudit.util.BankAuditUtil;
 
 @RestController
 @CrossOrigin("*")

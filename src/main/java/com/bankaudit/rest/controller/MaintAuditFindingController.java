@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.ServiceStatus;
-import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintAuditFinding;
 import com.bankaudit.service.MaintAuditFindingService;
 import com.bankaudit.service.SequenceAppenderService;
+import com.bankaudit.util.BankAuditUtil;
 
 @CrossOrigin("*")
 @RestController

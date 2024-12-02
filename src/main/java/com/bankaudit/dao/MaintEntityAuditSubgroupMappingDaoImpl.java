@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.model.MaintEntityAuditSubgroupMapping;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Repository("maintEntityAuditSubgroupMappingDao") 
 public class MaintEntityAuditSubgroupMappingDaoImpl extends AbstractDao implements MaintEntityAuditSubgroupMappingDao {

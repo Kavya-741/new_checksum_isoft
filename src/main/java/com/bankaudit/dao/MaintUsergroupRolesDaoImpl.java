@@ -23,7 +23,7 @@ import com.bankaudit.model.MaintUsergroupRoles;
 import com.bankaudit.model.User;
 import com.bankaudit.model.UserRoleMapping;
 import com.bankaudit.model.UserRoleMappingWrk;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Repository("maintUsergroupRolesDao")
 public class MaintUsergroupRolesDaoImpl extends AbstractDao implements MaintUsergroupRolesDao {

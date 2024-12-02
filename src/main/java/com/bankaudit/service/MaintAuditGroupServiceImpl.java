@@ -20,7 +20,7 @@ import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.model.MaintAuditGroup;
 import com.bankaudit.model.MaintAuditGroupHst;
 import com.bankaudit.model.MaintAuditGroupWrk;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Service("maintAuditGroupService")
 @Transactional("transactionManager")

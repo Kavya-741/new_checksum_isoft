@@ -17,7 +17,7 @@ import com.bankaudit.dao.AuditTypeDocumentDetailsDao;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.process.model.AuditDocumentDetails;
 import com.bankaudit.process.model.AuditDocumentDetailsWrk;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Service("auditTypeDocumentDetailsService")
 @Transactional("transactionManager")

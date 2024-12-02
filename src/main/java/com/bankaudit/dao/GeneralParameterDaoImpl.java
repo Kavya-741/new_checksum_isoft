@@ -8,7 +8,7 @@ import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
 import com.bankaudit.model.GeneralParameter;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Repository("generalParameterDao")
 public class GeneralParameterDaoImpl extends AbstractDao implements GeneralParameterDao{

@@ -35,7 +35,7 @@ import com.bankaudit.constants.BankAuditConstant;
 import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.process.model.AuditDocumentDetails;
 import com.bankaudit.service.AuditTypeDocumentDetailsService;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 import com.bankaudit.dto.ServiceStatus;
 
 @CrossOrigin("*")

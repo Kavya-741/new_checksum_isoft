@@ -17,7 +17,7 @@ import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.model.MaintAuditParameter;
 import com.bankaudit.model.MaintAuditParameterHst;
 import com.bankaudit.model.MaintAuditParameterWrk;
-import com.bankaudit.helper.BankAuditUtil;
+import com.bankaudit.util.BankAuditUtil;
 
 @Service("maintAuditParameterService")
 @Transactional("transactionManager")

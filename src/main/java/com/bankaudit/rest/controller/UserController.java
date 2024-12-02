@@ -17,12 +17,12 @@ import com.bankaudit.dto.LoginRequest;
 import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.dto.UpdateTokenDetailsRequest;
 import com.bankaudit.dto.UserRegistrationDto;
-import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.GeneralParameter;
 import com.bankaudit.model.User;
 import com.bankaudit.model.UserWrk;
 import com.bankaudit.service.GeneralParameterService;
 import com.bankaudit.service.UserService;
+import com.bankaudit.util.BankAuditUtil;
 
 @CrossOrigin("*")
 @RestController

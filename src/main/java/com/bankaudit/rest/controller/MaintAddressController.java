@@ -13,6 +13,7 @@ import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintAddress;
 import com.bankaudit.service.MaintAddressService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/maintAddress")
 public class MaintAddressController {

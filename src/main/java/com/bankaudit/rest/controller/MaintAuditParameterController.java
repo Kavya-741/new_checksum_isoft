@@ -32,6 +32,7 @@ import com.bankaudit.model.MaintAuditParameterWrk;
 import com.bankaudit.service.MaintAuditParameterService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/maintAuditParameter")
 public class MaintAuditParameterController {
 

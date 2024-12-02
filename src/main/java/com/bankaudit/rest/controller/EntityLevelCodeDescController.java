@@ -8,14 +8,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,16 +23,9 @@ import com.bankaudit.dto.DataTableResponse;
 import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.EntityLevelCodeDesc;
-import com.bankaudit.model.MaintLegalEntity;
 import com.bankaudit.service.EntityLevelCodeDescService;
-/**
- * The Class {@link EntityLevelCodeDescController} provides the REST services to
- * manage the {@link EntityLevelCodeDesc} class objects .
- *
- * @author amit.patel
- * @version 1.0
- */
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/entityLevelCodeDesc")
 public class EntityLevelCodeDescController {

@@ -7,6 +7,7 @@ import java.util.List;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +26,9 @@ import com.bankaudit.service.MaintEntityAuditSubgroupMappingService;
 import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.dto.ServiceStatus;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/maintEntityAuditSubGroupMapping")
+@RequestMapping("/api/maintEntityAuditSubGroupMapping")
 public class MaintEntityAuditSubGroupMappingController {
 	
 	@Autowired

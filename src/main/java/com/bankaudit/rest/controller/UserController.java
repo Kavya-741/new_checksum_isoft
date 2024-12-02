@@ -24,6 +24,7 @@ import com.bankaudit.model.UserWrk;
 import com.bankaudit.service.GeneralParameterService;
 import com.bankaudit.service.UserService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {

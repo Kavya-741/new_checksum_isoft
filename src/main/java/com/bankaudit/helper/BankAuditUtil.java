@@ -18,6 +18,16 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import com.bankaudit.config.BankAuditConfig;
+
 /**
  * {@link BankAuditUtil} class contains common utility methods.
  * 
@@ -166,7 +176,75 @@ public class BankAuditUtil {
 	}
 
 
+	public static String uploadMaterial(CommonsMultipartFile material, String directory,String uniqueFileName) throws Exception
+	  {
+	    
+	    String materialUrls = "";
+	    
+
+	      byte[] materialBytes = material.getBytes();
+	      String materialFileName = material.getOriginalFilename();
+	      materialFileName=uniqueFileName+"##"+materialFileName;
+	      String materialDirectory = BankAuditConfig.getInstance().getConfigValue(directory);
+	      
+	      if ((materialDirectory != null) && 
+	        (!isEmptyString(materialDirectory)))
+	      {
+	        materialDirectory = materialDirectory+ "/";
+	        
+	        writeFile(materialBytes, materialDirectory, materialFileName);
+	        materialUrls = materialDirectory + materialFileName ;
+	      }
+	      else {
+	       throw new Exception("directory not found");
+	      }
 	
+	    return materialUrls;
+	  
+	}
+	
+	public static String uploadMaterial(MultipartFile material, String directory,String uniqueFileName) throws Exception
+	  {
+	    
+	    String materialUrls = "";
+	    
+
+	      byte[] materialBytes = material.getBytes();
+	      String materialFileName = material.getOriginalFilename();
+	      materialFileName=uniqueFileName+"##"+materialFileName;
+	      String materialDirectory = BankAuditConfig.getInstance().getConfigValue(directory);
+	      
+	      if ((materialDirectory != null) && 
+	        (!isEmptyString(materialDirectory)))
+	      {
+	        materialDirectory = materialDirectory+ "/";
+	        
+	        writeFile(materialBytes, materialDirectory, materialFileName);
+	        materialUrls = materialDirectory + materialFileName ;
+	      }
+	      else {
+	       throw new Exception("directory not found");
+	      }
+	
+	    return materialUrls;
+	  
+	}
+	
+public static Boolean validateFileType(CommonsMultipartFile commonsMultipartFile,String[] fileTypes) {
+		
+		Boolean flag=false;
+		for (String fileType : fileTypes) {
+			
+			if(fileType.equalsIgnoreCase(commonsMultipartFile.getContentType())){
+				flag=true;
+				break;
+			}else {
+				flag=false;
+			}
+		}
+		return flag;
+	}
+
 
 	public static Date parseDateTime(String dateString) {
 	    if (dateString == null) return null;
@@ -443,5 +521,38 @@ public static Map<String,String> getMap(String str) {
 	    return s;
 	}
 
-
+	public static void main(String[] args) throws Exception {
+		System.out.println(isThisDateValid("03/12/2018","dd/MM/yyyy"));
+	}
+	
+	public static void createCell(XSSFSheet sheet, XSSFRow row, int cellNumber, String value, CellStyle style, int cellWidth) { 
+		if(cellWidth>0){
+			sheet.setColumnWidth(cellNumber, cellWidth);
+		}
+        Cell cell = row.createCell(cellNumber, Cell.CELL_TYPE_STRING);
+        cell.setCellValue((String) value);        
+        cell.setCellStyle(style);
+    }
+	
+	public static String readCellValue(Cell cell) {		
+		String cellValue = null;
+		switch(cell.getCellType()){
+			case  Cell.CELL_TYPE_STRING:
+				cellValue = cell.getStringCellValue();
+				break;
+			case  Cell.CELL_TYPE_NUMERIC:
+				DataFormatter formatter = new DataFormatter();
+                cellValue = formatter.formatCellValue(cell);
+				//cellValue = cell.getNumericCellValue()+"";
+				break;
+			case  Cell.CELL_TYPE_BOOLEAN:
+				cellValue = cell.getBooleanCellValue()+"";
+				break;
+			default:
+				cell.setCellType(Cell.CELL_TYPE_STRING);
+				cellValue = cell.getStringCellValue();
+				break;	   	 
+		 }
+		return cellValue;
+    }
 }

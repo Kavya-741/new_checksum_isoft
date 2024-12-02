@@ -11,29 +11,15 @@ import com.bankaudit.dto.ServiceStatus;
 import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.service.MaintUsergroupRolesService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/maintUsergroupRoles")
 public class MaintUsergroupRolesController {
 
-	/**
-	 * The maint usergroup roles service is autowired and make methods available
-	 * from service layer .
-	 */
 	@Autowired
 	MaintUsergroupRolesService maintUsergroupRolesService;
 
-
-	/** The Constant logger is used to specify the . */
 	static final Logger logger = Logger.getLogger(MaintUsergroupRolesController.class);
-
-	/**
-	 * This method is use to Creates the maint usergroup roles.
-	 *
-	 * @param maintUsergroupRolesDto
-	 *                               specify the maint usergroup roles dto
-	 * @return the service status class object with response status and payload
-	 *         .
-	 */
 
 	@GetMapping(value = "/getByLegalEntityCode/{legalEntityCode}/{status}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ServiceStatus getMaintUsergroupRolesByLegalEntityCode(@PathVariable("legalEntityCode") Integer legalEntityCode,

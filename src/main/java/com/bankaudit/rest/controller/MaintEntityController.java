@@ -245,7 +245,7 @@ public class MaintEntityController {
 				return serviceStatus;
 	}
 
-	@RequestMapping(value="/getByLegalEntityCode/{legalEntityCode}/{auditTypeCode}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/getByLegalEntityCode/{legalEntityCode}/{auditTypeCode}",produces=MediaType.APPLICATION_JSON_VALUE)
 	ServiceStatus getMaintEntityByLegalEntityCodeAndAuditTypeCode(
 			@PathVariable("legalEntityCode") Integer legalEntityCode,@PathVariable("auditTypeCode") String auditTypeCode
 			){

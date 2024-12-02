@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.bankaudit.service.MaintReportStandardStmtService;
 import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.dto.ServiceStatus;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/maintReportStandardStmt")
 public class MaintReportStandardStmtController {

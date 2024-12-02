@@ -9,6 +9,7 @@ import java.util.List;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintCriticality;
 import com.bankaudit.service.MaintCriticalityService;
 
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/maintCriticality")
 public class MaintCriticalityController {

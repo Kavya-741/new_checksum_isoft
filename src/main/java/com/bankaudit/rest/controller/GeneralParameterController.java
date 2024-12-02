@@ -6,6 +6,7 @@ package com.bankaudit.rest.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,13 +18,7 @@ import com.bankaudit.helper.Constants;
 import com.bankaudit.model.GeneralParameter;
 import com.bankaudit.service.GeneralParameterService;
 
-/**
- * The Class {@link GeneralParameterController} provides the REST services to
- * manage the {@link GeneralParameter} class objects .
- *
- * @author amit.patel
- * @version 1.0
- */
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/generalParameter")
 public class GeneralParameterController {

@@ -12,6 +12,7 @@ import com.bankaudit.helper.BankAuditUtil;
 import com.bankaudit.model.MaintAuditTypeDesc;
 import com.bankaudit.service.MaintAuditTypeDescService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/maintAuditTypeDesc")
 public class MaintAuditTypeDescController {

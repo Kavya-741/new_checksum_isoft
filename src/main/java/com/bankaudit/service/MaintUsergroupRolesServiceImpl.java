@@ -1,6 +1,7 @@
 package com.bankaudit.service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,6 +114,13 @@ public class MaintUsergroupRolesServiceImpl implements MaintUsergroupRolesServic
 	public void deleteUserDeptMapping(Integer legalEntityCode, String userId, String status) {
 
 		userDeptMappingDao.deleteUserDeptMapping( legalEntityCode,  userId,  status);
+	}
+
+	@Override
+	public Set<MaintUsergroupRoles> getMaintUsergroupRolesByLegalEntityCodeAndUserId(Integer legalEntityCode,
+			String userId,String status) {
+		return maintUsergroupRolesDao.getMaintUsergroupRolesByLegalEntityCodeAndUserId(legalEntityCode,userId,status).
+				stream().map(UserRoleMapping::getMaintUsergroupRoles).collect(Collectors.toSet());
 	}
 
 

@@ -1,7 +1,9 @@
 package com.bankaudit.service;
 
 import java.util.List;
+import java.util.Set;
 
+import com.bankaudit.model.MaintUsergroupRoles;
 import com.bankaudit.model.UserDeptMapping;
 import com.bankaudit.model.UserRoleMapping;
 public interface MaintUsergroupRolesService {
@@ -14,4 +16,7 @@ public interface MaintUsergroupRolesService {
 	void deleteUserRoleMapping(Integer legalEntityCode, String userId, String status);
 
 	void deleteUserDeptMapping(Integer legalEntityCode, String userId, String status);
+
+	Set<MaintUsergroupRoles> getMaintUsergroupRolesByLegalEntityCodeAndUserId(Integer legalEntityCode, String userId,String status);
+
 }
